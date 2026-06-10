@@ -94,6 +94,48 @@ button:hover{
   transform:translateY(-2px);
 }
 
+#localizacao-card{
+
+  background:white;
+
+  padding:25px;
+
+  margin-bottom:25px;
+
+  border-radius:25px;
+
+  border-left:6px solid var(--verde-principal);
+
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+#localizacao-card h3{
+
+  color:var(--verde-escuro);
+
+  margin-bottom:12px;
+
+}
+
+#localizacao-card p{
+
+  line-height:1.6;
+
+  color:#555;
+
+  margin-bottom:15px;
+
+}
+
+#status-localizacao{
+
+  font-weight:bold;
+
+  font-size:16px;
+
+}
+
 @media(max-width:768px){
 
   body{
@@ -118,7 +160,7 @@ button:hover{
 
   <div id="localizacao-card">
 
-    <h3>📍 Confirmação de Localização</h3>
+    <h3>📍 Verificação de Localização</h3>
 
     <p>
         Para prosseguir com o cadastro, é necessário permitir o acesso à sua localização.
@@ -209,7 +251,15 @@ document.getElementById('formulario')
 .addEventListener('submit', async function(e){
 
 e.preventDefault();
+  
+if(!localizacaoPermitida){
 
+    alert(
+      "Para enviar o cadastro é necessário permitir o acesso à localização."
+    );
+
+    return;
+}
 const dados = {
 
 nome: document.getElementById('nome').value,
