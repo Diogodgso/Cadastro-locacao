@@ -116,15 +116,27 @@ button:hover{
 </head>
 <body>
 
+  <div id="localizacao-card">
+
+    <h3>📍 Confirmação de Localização</h3>
+
+    <p>
+        Para prosseguir com o cadastro, é necessário permitir o acesso à sua localização.
+        Essa informação é utilizada exclusivamente para validação do interesse no imóvel.
+    </p>
+
+    <div id="status-localizacao">
+        ⏳ Aguardando autorização...
+    </div>
+
+</div>
+
 <h2>🏡 CADASTRO DE INTERESSE EM LOCAÇÃO</h2>
 
 <form id="formulario">
 
 <label>Nome Completo</label>
 <input type="text" id="nome" required>
-
-<label>CPF</label>
-<input type="text" id="cpf">
 
 <label>Telefone / WhatsApp</label>
 <input type="tel" id="telefone" required>
@@ -160,17 +172,39 @@ Enviar Cadastro
 
 let latitude = "";
 let longitude = "";
+let localizacaoPermitida = false;
+
+const statusLocalizacao =
+document.getElementById("status-localizacao");
 
 navigator.geolocation.getCurrentPosition(
+
 function(pos){
+
     latitude = pos.coords.latitude;
     longitude = pos.coords.longitude;
-},
-function(err){
-    console.log(err);
-}
-);
 
+    localizacaoPermitida = true;
+
+    statusLocalizacao.innerHTML =
+    "✅ Localização confirmada com sucesso";
+
+    statusLocalizacao.style.color = "#4CAF50";
+
+},
+
+function(){
+ localizacaoPermitida = false;
+
+    statusLocalizacao.innerHTML =
+    "❌ É necessário permitir a localização para continuar";
+
+    statusLocalizacao.style.color = "#D32F2F";
+
+}
+
+);
+  
 document.getElementById('formulario')
 .addEventListener('submit', async function(e){
 
@@ -179,7 +213,6 @@ e.preventDefault();
 const dados = {
 
 nome: document.getElementById('nome').value,
-cpf: document.getElementById('cpf').value,
 telefone: document.getElementById('telefone').value,
 pessoas: document.getElementById('pessoas').value,
 empresa: document.getElementById('empresa').value,
