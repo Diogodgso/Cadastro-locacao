@@ -135,6 +135,34 @@ button:hover{
   font-size:16px;
 
 }
+#btn-localizacao{
+
+  width:100%;
+
+  margin-top:15px;
+
+  padding:12px;
+
+  border:none;
+
+  border-radius:30px;
+
+  background:#708C3D;
+
+  color:white;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+}
+
+#btn-localizacao:hover{
+
+  opacity:0.9;
+
+}
+  
 
 @media(max-width:768px){
 
@@ -211,7 +239,6 @@ Enviar Cadastro
 </form>
 
 <script>
-
 let latitude = "";
 let longitude = "";
 let localizacaoPermitida = false;
@@ -219,33 +246,47 @@ let localizacaoPermitida = false;
 const statusLocalizacao =
 document.getElementById("status-localizacao");
 
-navigator.geolocation.getCurrentPosition(
+const btnLocalizacao =
+document.getElementById("btn-localizacao");
 
-function(pos){
+function solicitarLocalizacao(){
 
-    latitude = pos.coords.latitude;
-    longitude = pos.coords.longitude;
+    navigator.geolocation.getCurrentPosition(
 
-    localizacaoPermitida = true;
+        function(pos){
 
-    statusLocalizacao.innerHTML =
-    "✅ Localização confirmada com sucesso";
+            latitude = pos.coords.latitude;
+            longitude = pos.coords.longitude;
 
-    statusLocalizacao.style.color = "#4CAF50";
+            localizacaoPermitida = true;
 
-},
+            statusLocalizacao.innerHTML =
+            "✅ Localização validada. Você já pode preencher o cadastro.";
 
-function(){
- localizacaoPermitida = false;
+            statusLocalizacao.style.color = "#4CAF50";
 
-    statusLocalizacao.innerHTML =
-    "❌ É necessário permitir a localização para continuar";
+            btnLocalizacao.style.display = "none";
 
-    statusLocalizacao.style.color = "#D32F2F";
+        },
+
+        function(){
+
+            localizacaoPermitida = false;
+
+            statusLocalizacao.innerHTML =
+            "❌ Localização não autorizada. Clique no botão abaixo para tentar novamente.";
+
+            statusLocalizacao.style.color = "#D32F2F";
+
+            btnLocalizacao.style.display = "block";
+
+        }
+
+    );
 
 }
 
-);
+solicitarLocalizacao();
   
 document.getElementById('formulario')
 .addEventListener('submit', async function(e){
