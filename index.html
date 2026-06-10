@@ -199,11 +199,10 @@ button:hover{
         ⏳ Aguardando autorização...
     </div>
 
-    <button
+<button
     type="button"
     id="btn-localizacao"
     onclick="solicitarLocalizacao()"
-    style="display:none;"
 >
     📍 Permitir Localização
 </button>
@@ -287,9 +286,12 @@ function solicitarLocalizacao(){
 
             statusLocalizacao.style.color = "#D32F2F";
 
-            btnLocalizacao.style.display = "block";
+          btnLocalizacao.style.display = "block";
+          btnLocalizacao.style.visibility = "visible";
+          btnLocalizacao.style.opacity = "1";
           
            alert("FUNÇÃO DE ERRO EXECUTADA");
+          console.log(btnLocalizacao);
 
         }
 
