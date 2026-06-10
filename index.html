@@ -281,16 +281,16 @@ function solicitarLocalizacao(){
 
             localizacaoPermitida = false;
 
-            statusLocalizacao.innerHTML =
-            "❌ Localização não autorizada. Clique no botão abaixo para tentar novamente.";
+          statusLocalizacao.innerHTML =
+          "❌ Não foi possível validar sua localização.<br><br>" +
+          "Para continuar, clique no cadeado 🔒 ao lado do endereço do site, permita o acesso à localização e atualize esta página.";
 
             statusLocalizacao.style.color = "#D32F2F";
 
           btnLocalizacao.style.display = "block";
           btnLocalizacao.style.visibility = "visible";
           btnLocalizacao.style.opacity = "1";
-          
-           alert("FUNÇÃO DE ERRO EXECUTADA");
+
           console.log(btnLocalizacao);
 
         }
