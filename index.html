@@ -190,10 +190,11 @@ button:hover{
 
     <h3>📍 Verificação de Localização</h3>
 
-    <p>
-        Para prosseguir com o cadastro, é necessário permitir o acesso à sua localização.
-        Essa informação é utilizada exclusivamente para validação do interesse no imóvel.
-    </p>
+  <p class="texto-localizacao">
+    📍 Para prosseguir com o cadastro, permita o acesso à sua localização.
+    <br><br>
+     Esta informação é necessário para validação do interesse no imóvel.
+</p>
 
     <div id="status-localizacao">
         ⏳ Aguardando autorização...
@@ -286,13 +287,12 @@ function solicitarLocalizacao(){
           "❌ Não foi possível validar sua localização.<br><br>" +
           "Para continuar, clique no cadeado 🔒 ao lado do endereço do site, permita o acesso à localização e atualize esta página.";
 
-            statusLocalizacao.style.color = "#D32F2F";
+          statusLocalizacao.style.color = "#D32F2F";
 
           btnLocalizacao.style.display = "block";
           btnLocalizacao.style.visibility = "visible";
           btnLocalizacao.style.opacity = "1";
 
-          console.log(btnLocalizacao);
 
         }
 
